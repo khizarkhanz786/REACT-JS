@@ -1,0 +1,132 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background: linear-gradient(135deg, #0f172a, #273245);
+  color: white;
+
+}
+.all{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container{
+ padding: 10px;
+  width: 350px;
+  height: 300px;
+  background:linear-gradient(120deg,rgba(255, 0, 0, 0.667),orange);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35),
+    0 0 35px rgba(255, 69, 0, 0.35);}
+
+.container-regis{
+   padding: 5px;
+  width: 350px;
+  height: 400px;
+  background:linear-gradient(120deg,rgba(255, 0, 0, 0.667),orange);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35),
+    0 0 35px rgba(255, 69, 0, 0.35);
+}
+ h1{
+  text-transform: capitalize;
+  font-style: italic;
+  font-size: 33px;
+  font-weight: bold;
+}
+ input{
+  padding: 10px;
+  border: none;
+  background: transparent;
+  width: 100%;
+  outline: none;
+  color: white;
+  border-bottom: 2px solid black;
+}
+ input::placeholder {
+  color: rgba(255, 255, 255, 0.838) !important;
+}
+ button{
+  width: 60%;
+  padding: 5px;
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: bolder;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(380deg,rgba(255, 0, 0, 0.76),orange) ;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+.container button:hover{
+    background: linear-gradient(120deg,rgba(255, 0, 0, 0.26),orange) ;
+
+  transform: translateY(-2px);
+}
+.dashboard-con{
+   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+
+}
+.dash-h1 h1{
+  font-size: 48px;
+text-align: center;
+margin-top: 20px;
+margin-bottom: 50px;
+text-decoration: underline;
+color: #f8fafc; 
+  font-size: 2.50rem;
+  font-weight: 600;
+}
+.dash-h1 h1 span{
+  color: #34d399;
+  font-weight: 700;
+border-bottom: 2px solid #34d399;
+}
+.card{
+  width:300px;
+  height: 200px;
+  background-color: white;
+  color: #0f172a;
+  background-color: #1e293b; 
+  border: 1px solid #334155;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+.card h2{
+  text-transform: capitalize;
+  font-style: italic;
+color: #ffc404;
+   font-weight: 600;
+}
+.card p{
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #f8fafc; 
+}

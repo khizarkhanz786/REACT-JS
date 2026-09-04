@@ -1,0 +1,190 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.body-con{
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+.nav-con{
+  display: flex;
+  justify-content: space-around;
+}
+.navbar {
+   position: fixed;
+  left: 5%;
+  top: 10px;
+  z-index: 100;
+  width: 90%;
+  margin: 3px auto; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: rgba(94, 89, 89, 0.479);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.navbar h2{
+ text-transform: capitalize;
+  font-size: 35px;
+  background: linear-gradient(90deg, #f5c542, #fbeda8, #d4a72c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  
+}
+.navbar h2:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 10px rgba(245, 197, 66, 0.6));
+}
+.navbar ul{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style-type: none;
+}
+.navbar ul li a{
+  font-size: 20px;
+  color: #f5c542;
+  filter: drop-shadow(0 0 6px rgba(245, 197, 66, 0.4));
+}
+.navbar ul li a:hover { 
+  color: #ffd966;
+  filter: drop-shadow(0 0 10px rgba(245, 197, 66, 0.7));
+}
+.card-con {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 90%;
+  margin: 100px auto 100px auto; 
+}
+.galleryCard-con {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 16px; /* Curves add kar diye */
+  overflow: hidden;
+  background-color: #898989;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+.card-img {
+  width: 100%;
+  height: 100%;
+}
+.card-img img {
+  width: 100%; /* Image poore box ko cover karegi */
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.galleryCard-con:hover .card-img img {
+  transform: scale(1.08);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10; 
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 10%, rgba(0, 0, 0, 0.3) 60%, transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.galleryCard-con:hover .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-overlay h3 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-transform: capitalize;
+}
+
+.card-overlay p {
+  color: #d4d4d8;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+.footer-con {
+  position: sticky;
+  bottom: 10px;
+  z-index: 100;
+  width: 90%;
+  background: rgba(94, 89, 89, 0.479);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
+  border-radius: 10px;
+  padding: 10px;
+}
+.page-heading{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.page-count{
+  display: flex;
+  gap: 10px ;
+  
+}
+/* Page count buttons */
+.page-count button {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-count button:hover {
+  background: #f5c542;
+  color: #000000;
+  border-color: #f5c542;
+}
+
+.footer-con select {
+  background: rgba(24, 24, 27, 0.8);
+  color: #f5c542;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.footer-con select option {
+  background: #18181b;
+  color: #ffffff;
+}
