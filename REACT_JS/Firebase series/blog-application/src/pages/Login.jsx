@@ -6,6 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {useNavigate,Link} from 'react-router-dom'
 import Home from './Home.jsx'
+import SignInWithGoogle from '../components/SignInWithGoogle.jsx';
+
 
 
 const Login = () => {
@@ -22,7 +24,7 @@ const Login = () => {
     let response = await signInWithEmailAndPassword(auth, email, password)
     if (response && response.user) {
       toast.success("Login successfully")
-      navigate('/home')
+      // navigate('/home')
     }
     
   } catch (error) {
@@ -215,6 +217,8 @@ const Login = () => {
               </div>
 
 
+                 <SignInWithGoogle />
+
               {/* Login Button */}
               <button
                 type="submit"
@@ -232,7 +236,7 @@ const Login = () => {
                   New to Blog Hub?{" "}
 
                   <Link
-                    to="/"
+                    to="/signup"
                     className="font-semibold text-indigo-600 transition-colors hover:text-indigo-700 hover:underline"
                   >
                     Create an account

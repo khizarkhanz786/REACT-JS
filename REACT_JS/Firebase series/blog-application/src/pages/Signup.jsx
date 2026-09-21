@@ -1,21 +1,42 @@
 import React from 'react'
-import { useState ,useEffect} from 'react'
+import { useState ,useEffect } from 'react'
 import { getAuth, createUserWithEmailAndPassword ,onAuthStateChanged } from "firebase/auth";
-import { auth } from "../Firebase/Config.js"
+import { auth , db } from "../Firebase/Config.js"
 import { ToastContainer, toast } from 'react-toastify';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom'
 import Home from './Home.jsx'
 import Img from '../Assets/Blog-image.png'
+import SignInWithGoogle from '../components/SignInWithGoogle.jsx';
+import { doc, setDoc } from "firebase/firestore"; 
 
 
 
+ export const SaveDataIntoDB = async (userName = '', data) => {
+  if (!data || !data.uid) {
+    console.error("UID missing hai!");
+    return;
+  }
 
+  try {
+    await setDoc(doc(db, 'users', data.uid), {
+      email: data.email,
+      username: data.displayName ? data.displayName : userName,
+      photoURL : data.photoURL ? data.photoURL : "",
+      createdAt: new Date()
+    });
+    console.log("user data saved");
+  } catch (error) {
+    console.error("Firestore Error:", error);
+    toast.error(error.message);
+  }
+};
 const Signup = () => {
   const [user, setUser] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+
 
   const SignupHandler = async () => {
     const auth = getAuth();
@@ -26,8 +47,9 @@ const Signup = () => {
 
       console.log(response)
       if (response) {
+        SaveDataIntoDB(user,response.user)
         toast.success("signup succsesfully")
-        navigate('/home')
+        navigate('/')
       }
 
     } catch (error) {
@@ -41,30 +63,7 @@ const Signup = () => {
     };
 
   }
-  const SignUpWithGoogle = async () => {
-    if (auth.currentUser) {
-      toast.info("you are already signin")
-      return
-    }
-    const provider = new GoogleAuthProvider();
-    provider.setCustomParameters({
-      prompt: 'select_account'
-    });
-    try {
-      const response = await signInWithPopup(auth, provider)
-      if (response && response.user) {
-        toast.success("Signup successfully")
-        navigate('/home')
-      }
-      console.log(response)
-    } catch (error) {
-      if (error.code !== "auth/cancelled-popup-request") {
-        toast.error(error.message);
-      }
-    }
-
-
-  }
+ 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -244,7 +243,7 @@ const Signup = () => {
 
 
                     {/* Google */}
-                    <button
+                    {/* <button
                       type="button"
                       className="mt-1 flex w-full items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50 hover:shadow-md active:scale-[0.98]"
                       onClick={SignUpWithGoogle}
@@ -278,8 +277,8 @@ const Signup = () => {
                         Continue with Google
                       </span>
 
-                    </button>
-
+                    </button> */}
+                    <SignInWithGoogle />
 
                     {/* Divider */}
                     <div className="flex items-center gap-3">
@@ -311,7 +310,7 @@ const Signup = () => {
                       Already have an account?{" "}
 
                       <Link
-                        to="./login"
+                        to="/login"
                         className="font-semibold text-indigo-600 transition-colors hover:text-indigo-700 hover:underline"
                       >
                         Login
