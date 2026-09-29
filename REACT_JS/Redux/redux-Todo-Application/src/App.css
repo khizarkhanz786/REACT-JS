@@ -1,0 +1,295 @@
+@import "tailwindcss";
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #0b0f14;
+}
+.intro-screen {
+  min-height: 100vh;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Very subtle background */
+.intro-screen::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 50%;
+  animation: backgroundPulse 3s ease-in-out infinite;
+}
+
+/* Content */
+.intro-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  animation: introAppear 0.7s ease-out forwards;
+}
+
+/* Developer Icon */
+.intro-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+  background: #111111;
+  border: 1px solid #262626;
+
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+
+  animation: iconAppear 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Main Title */
+.intro-title {
+  margin: 0;
+
+  color: #f5f5f5;
+
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.1;
+  font-weight: 700;
+
+  letter-spacing: -1.5px;
+
+  animation: titleAppear 0.8s ease-out 0.15s both;
+}
+
+/* Subtitle */
+.intro-subtitle {
+  margin-top: 12px;
+
+  color: #737373;
+
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+
+  animation: subtitleAppear 0.8s ease-out 0.3s both;
+}
+
+/* Loading Container */
+.intro-loader {
+  width: 180px;
+  height: 2px;
+
+  margin: 30px auto 0;
+
+  background: #1f1f1f;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
+  animation: loaderAppear 0.6s ease-out 0.4s both;
+}
+
+/* Loading Bar */
+.intro-loader-bar {
+  height: 100%;
+  width: 0;
+
+  background: #f5f5f5;
+
+  border-radius: 999px;
+
+  animation: loading 1.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+
+/* =========================
+   Animations
+========================= */
+
+@keyframes introAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes iconAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+@keyframes titleAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes subtitleAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes loaderAppear {
+  from {
+    opacity: 0;
+    transform: scaleX(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+
+@keyframes loading {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+
+@keyframes backgroundPulse {
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+/* Spinner Screen */
+.spinner-screen {
+  min-height: 100vh;
+  background: #0b0f14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid #252b35;
+  border-top-color: #f35c25;
+  border-radius: 50%;
+  animation: spinnerRotate 0.7s linear infinite;
+}
+.spinner-text {
+  margin: 0;
+  color: #8490a1;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  animation: textFadeIn 0.5s ease-out both;
+}
+
+/* Todo Application Entry */
+.todo-app-enter {
+  animation: todoEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes spinnerRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes screenFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes todoEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .todo-app-enter,
+  .spinner-screen,
+  .spinner,
+  .spinner-text {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+}

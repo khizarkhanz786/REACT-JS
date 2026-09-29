@@ -5,6 +5,7 @@ const Blog = () => {
     <>
     
     <CreateModal />
+    
     </>
   )
 }
