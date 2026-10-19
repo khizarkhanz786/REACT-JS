@@ -1,4 +1,4 @@
-import React, { useEffect, useState , } from "react";
+import { useEffect, useState , } from "react";
 import { Link } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../Firebase/Config";
@@ -66,7 +66,7 @@ const Navbar = () => {
       </Link>
 
       <Link
-        to="/create-blog"
+        to="/blog"
         className="font-medium text-slate-600 transition hover:text-indigo-600"
       >
         Create Blog
@@ -152,7 +152,7 @@ const Navbar = () => {
         </Link>
 
         <Link
-          to="/create-blog"
+          to="/blog"
           onClick={() => setMenuOpen(false)}
           className="rounded-lg px-3 py-2.5 font-medium text-slate-600 transition hover:bg-indigo-50 hover:text-indigo-600"
         >

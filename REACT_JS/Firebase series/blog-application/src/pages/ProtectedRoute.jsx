@@ -1,28 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from '../Firebase/Config';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
+import { auth } from "../Firebase/Config";
 
 const ProtectedRoute = ({ children }) => {
-    let navigate = useNavigate();
-    const [existUser, setExistUser] = useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    const getuserdata = () => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setExistUser(user);
-            } else {
-                setExistUser(null);
-                navigate("/login");
-            }
-        });
-    };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
 
-    useEffect(() => {
-        getuserdata();
-    }, []);
+    // cleanup: component hatne par listener band
+    return () => unsubscribe();
+  }, []);
 
-    return existUser ? children : null;
-}
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-900">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-white/20 border-t-indigo-400"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
 
 export default ProtectedRoute;
